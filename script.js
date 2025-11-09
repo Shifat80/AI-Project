@@ -170,19 +170,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function generateRoutine() {
+  console.log("Generate Routine button clicked");
   const dataInput = document.getElementById("data-input").value;
+  console.log("Data input length:", dataInput.length);
   try {
     const data = JSON.parse(dataInput);
+    console.log("JSON parsed successfully");
     COURSES = data.COURSES;
     PROFESSORS = data.PROFESSORS;
     ROOMS = data.ROOMS;
     TIMESLOTS = data.TIMESLOTS;
     LECTURES = data.LECTURES;
     document.getElementById("schedule-output").innerHTML = '<p class="text-green-500">Data loaded successfully. Starting evolution...</p>';
+    console.log("Starting evolution");
     startEvolution();
   } catch (error) {
-    alert("Invalid JSON format. Please check your input.");
     console.error("JSON parsing error:", error);
+    alert("Invalid JSON format. Please check your input. Error: " + error.message);
   }
 }
 
@@ -243,11 +247,16 @@ function runGeneration(currentPopulation) {
 }
 
 function startEvolution() {
-  if (isRunning) return;
+  console.log("Starting evolution function called");
+  if (isRunning) {
+    console.log("Evolution already running");
+    return;
+  }
   isRunning = true;
   generationCount = 0;
   bestSchedule = null;
   population = initializePopulation();
+  console.log("Population initialized, starting runGeneration");
   runGeneration(population);
 }
 
