@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timetable Scheduler</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold text-gray-900 mb-6">
+        University GA Scheduler
+      </h1>
+
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-indigo-600">
+          Evolution Status
+        </h2>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <p>
+            <strong>Generation:</strong>
+            <span id="generation" class="font-medium text-indigo-700">0</span>
+          </p>
+          <p>
+            <strong>Best Fitness:</strong>
+            <span id="best-fitness" class="font-medium text-green-600"
+              >0.000</span
+            >
+          </p>
+          <p>
+            <strong>Penalty Points:</strong>
+            <span id="penalty-points" class="font-medium text-red-600"
+              >N/A</span
+            >
+          </p>
+          <p>
+            <strong>Population Size:</strong>
+            <span id="pop-size" class="font-medium text-gray-700">50</span>
+          </p>
+        </div>
+
+        <button
+          id="start-button"
+          class="btn-primary mt-6 w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+        >
+          Start Evolution
+        </button>
+      </div>
+
+      <div class="card p-6">
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">
+          Best Schedule (Generation <span id="best-schedule-gen">0</span>)
+        </h2>
+        <div id="schedule-output" class="overflow-x-auto">
+          <p class="text-gray-500">
+            Press 'Start Evolution' to generate a schedule.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="algorithm.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
