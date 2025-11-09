@@ -7,21 +7,30 @@ const ELITISM_COUNT = 2; // Keep the top 2 individuals unchanged
 // Hardcoded entities for simplification
 let COURSES, PROFESSORS, ROOMS, TIMESLOTS, LECTURES;
 
-fetch('data.json')
-  .then(response => response.json())
-  .then(data => {
+// Initialize event listeners
+document.addEventListener('DOMContentLoaded', () => {
+  document
+    .getElementById("generate-button")
+    .addEventListener("click", generateRoutine);
+  document.getElementById("pop-size").textContent = POPULATION_SIZE;
+});
+
+function generateRoutine() {
+  const dataInput = document.getElementById("data-input").value;
+  try {
+    const data = JSON.parse(dataInput);
     COURSES = data.COURSES;
     PROFESSORS = data.PROFESSORS;
     ROOMS = data.ROOMS;
     TIMESLOTS = data.TIMESLOTS;
     LECTURES = data.LECTURES;
-
-    // Initialize event listener
-    document
-      .getElementById("start-button")
-      .addEventListener("click", startEvolution);
-    document.getElementById("pop-size").textContent = POPULATION_SIZE;
-  });
+    document.getElementById("schedule-output").innerHTML = '<p class="text-green-500">Data loaded successfully. Starting evolution...</p>';
+    startEvolution();
+  } catch (error) {
+    alert("Invalid JSON format. Please check your input.");
+    console.error("JSON parsing error:", error);
+  }
+}
 
 // --- Main GA Loop and UI Integration ---
 
@@ -57,9 +66,6 @@ function runGeneration(currentPopulation) {
   // Stop condition
   if (generationCount >= GENERATIONS || bestSchedule.fitness === 1) {
     isRunning = false;
-    document.getElementById("start-button").textContent =
-      "Evolution Complete";
-    document.getElementById("start-button").disabled = true;
     return;
   }
 
@@ -87,8 +93,6 @@ function startEvolution() {
   isRunning = true;
   generationCount = 0;
   bestSchedule = null;
-  document.getElementById("start-button").textContent = "Evolving...";
-  document.getElementById("start-button").disabled = false;
   population = initializePopulation();
   runGeneration(population);
 }

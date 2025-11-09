@@ -19,6 +19,80 @@
 
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-semibold mb-4 text-indigo-600">
+          Data Input
+        </h2>
+        <label for="data-input" class="block text-sm font-medium text-gray-700 mb-2">
+          Enter JSON Data:
+        </label>
+        <textarea
+          id="data-input"
+          rows="20"
+          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 font-mono text-sm"
+          placeholder="Paste your JSON data here..."
+        >{
+  "COURSES": [
+    { "id": "CSE319", "name": "Computer Networks", "enrollment": 60 },
+    { "id": "CSE320", "name": "Computer Networks Lab", "enrollment": 30 },
+    { "id": "CSE327", "name": "Software Engineering", "enrollment": 60 },
+    { "id": "CSE328", "name": "Software Engineering Lab", "enrollment": 30 },
+    { "id": "CSE351", "name": "Artificial Intelligence and Expert System", "enrollment": 60 },
+    { "id": "CSE352", "name": "Artificial Intelligence and Expert System Lab", "enrollment": 30 },
+    { "id": "CSE407", "name": "Project Management and Professional Ethics", "enrollment": 60 },
+    { "id": "CSE417", "name": "Distributed Database Management Systems", "enrollment": 60 },
+    { "id": "CSE418", "name": "Distributed Database Management Systems Lab", "enrollment": 30 }
+  ],
+  "PROFESSORS": [
+    { "id": "DMRI", "name": "Dr. Md. Rajibul Islam", "courses": ["CSE351", "CSE352"] },
+    { "id": "DMAa", "name": "Dr. Md. Musfiqur Anwar", "courses": ["CSE327"] },
+    { "id": "RRSA", "name": "Rubaiya Reza Sohana", "courses": ["CSE328"] },
+    { "id": "RAIS", "name": "Md. Rakibul Islam", "courses": ["CSE319", "CSE320"] },
+    { "id": "TT", "name": "Tahsina Tabassum", "courses": ["CSE407"] },
+    { "id": "AAG", "name": "Ali Azgar", "courses": ["CSE417", "CSE418"] }
+  ],
+  "ROOMS": [
+    { "id": "2318", "capacity": 60 },
+    { "id": "2319", "capacity": 60 },
+    { "id": "2416", "capacity": 30 },
+    { "id": "2417", "capacity": 30 },
+    { "id": "2419", "capacity": 30 },
+    { "id": "2709", "capacity": 60 },
+    { "id": "2810", "capacity": 60 },
+    { "id": "3604", "capacity": 60 }
+  ],
+  "TIMESLOTS": [
+    "Sun_09:15", "Sun_10:30", "Sun_11:45", "Sun_01:30", "Sun_02:45", "Sun_04:00", "Sun_05:15",
+    "Mon_09:15", "Mon_10:30", "Mon_11:45", "Mon_01:30", "Mon_02:45", "Mon_04:00", "Mon_05:15",
+    "Tue_09:15", "Tue_10:30", "Tue_11:45", "Tue_01:30", "Tue_02:45", "Tue_04:00", "Tue_05:15",
+    "Wed_09:15", "Wed_10:30", "Wed_11:45", "Wed_01:30", "Wed_02:45", "Wed_04:00", "Wed_05:15",
+    "Thu_09:15", "Thu_10:30", "Thu_11:45", "Thu_01:30", "Thu_02:45", "Thu_04:00", "Thu_05:15"
+  ],
+  "LECTURES": [
+    { "course": "CSE351", "professor": "DMRI", "room": "2319", "day": "Sun", "time": "09:15" },
+    { "course": "CSE327", "professor": "DMAa", "room": "2319", "day": "Sun", "time": "10:30" },
+    { "course": "CSE352", "professor": "DMRI", "room": "2419", "day": "Sun", "time": "11:45" },
+    { "course": "CSE407", "professor": "TT", "room": "2319", "day": "Mon", "time": "09:15" },
+    { "course": "CSE320", "professor": "RAIS", "room": "2416", "day": "Mon", "time": "10:30" },
+    { "course": "CSE319", "professor": "RAIS", "room": "3604", "day": "Tue", "time": "09:15" },
+    { "course": "CSE418", "professor": "AAG", "room": "2417", "day": "Tue", "time": "10:30" },
+    { "course": "CSE351", "professor": "DMRI", "room": "2318", "day": "Wed", "time": "09:15" },
+    { "course": "CSE417", "professor": "AAG", "room": "2318", "day": "Wed", "time": "10:30" },
+    { "course": "CSE328", "professor": "RRSA", "room": "2417", "day": "Wed", "time": "11:45" },
+    { "course": "CSE327", "professor": "DMAa", "room": "2709", "day": "Wed", "time": "01:30" },
+    { "course": "CSE319", "professor": "RAIS", "room": "2810", "day": "Thu", "time": "09:15" },
+    { "course": "CSE407", "professor": "TT", "room": "2810", "day": "Thu", "time": "10:30" },
+    { "course": "CSE417", "professor": "AAG", "room": "2810", "day": "Thu", "time": "11:45" }
+  ]
+}</textarea>
+        <button
+          id="generate-button"
+          class="btn-primary mt-4 w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+        >
+          Generate Routine
+        </button>
+      </div>
+
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-indigo-600">
           Evolution Status
         </h2>
         <div class="grid grid-cols-2 gap-4 text-sm">
@@ -43,13 +117,6 @@
             <span id="pop-size" class="font-medium text-gray-700">50</span>
           </p>
         </div>
-
-        <button
-          id="start-button"
-          class="btn-primary mt-6 w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-        >
-          Start Evolution
-        </button>
       </div>
 
       <div class="card p-6">
@@ -58,7 +125,7 @@
         </h2>
         <div id="schedule-output" class="overflow-x-auto">
           <p class="text-gray-500">
-            Press 'Start Evolution' to generate a schedule.
+            Enter JSON data and press 'Generate Routine' to start evolution.
           </p>
         </div>
       </div>
