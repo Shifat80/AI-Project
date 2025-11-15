@@ -68,7 +68,7 @@ def genetic_algorithm(generations=100, population_size=10):
 
         # Stop if perfect
         if fitness(best) == 1.0:
-            print("✅ Perfect schedule found!")
+            print(" Perfect schedule found!")
             break
 
         # Selection (top 50%)
